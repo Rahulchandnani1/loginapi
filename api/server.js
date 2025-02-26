@@ -6,9 +6,19 @@ const bodyParser = require("body-parser");
 
 dotenv.config();
 const app = express();
+const corsOptions = {
+  origin: "*", // Replace with your frontend's domain for production (e.g., "https://your-frontend-domain.com")
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+  allowedHeaders: "Content-Type,Authorization",
+};
+app.use(cors(corsOptions));
 
-app.use(cors());
+// Middleware
 app.use(bodyParser.json());
+
+// Handle Preflight (OPTIONS) Requests
+app.options("*", cors(corsOptions));
+
 
 // MongoDB connection
 mongoose
