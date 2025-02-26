@@ -7,9 +7,10 @@ const bodyParser = require("body-parser");
 dotenv.config();
 const app = express();
 const corsOptions = {
-  origin: "*", // Replace with your frontend's domain for production (e.g., "https://your-frontend-domain.com")
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  allowedHeaders: "Content-Type,Authorization",
+  origin: ["http://localhost:3000", "https://loginapi-eosin.vercel.app"], // Add allowed origins
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 };
 app.use(cors(corsOptions));
 
